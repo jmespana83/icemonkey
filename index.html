@@ -22,15 +22,15 @@
 <footer class="footer"><div class="wrap"><span>© <span id="year"></span> ICE MONKEY. Made with creativity and a little frost. ❄</span><span>Independent game studio</span></div></footer>
 <script>
 // =========== EASY TO EDIT: CHANGE YOUR GAMES BELOW ===========
-// The 7 real games are listed below. All filenames match the included catalog exactly.
-// Keep each ZIP, thumbnail PNG, and blastbound.html beside index.html on GitHub. BLASTBOUND uses blastbound.png; RIFTWILD uses RIFTWILD.png.
+// The six Windows ZIP games are hosted on Google Drive. Keep all thumbnail PNG files and blastbound.html beside index.html on GitHub.
+// Google Drive files must be shared as "Anyone with the link" -> "Viewer". BLASTBOUND stays playable directly on this site.
 const games = [
-  { title: "Among Us 3D — The Skeld", status: "released", platform: "Windows", description: "A fan-made 3D take on social deduction aboard The Skeld. Unofficial fan project; not affiliated with Innersloth.", url: "Among Us 3D - The Skeld EXE.zip", image: "Among Us 3D - The Skeld EXE.png", emoji: "🚀", size: "42 MB" },
-  { title: "FableArena (Alpha)", status: "released", platform: "Windows", description: "Try the early alpha build of FableArena and explore what we're building. Feedback is welcome!", url: "FableArena-alpha.zip", image: "FableArena-alpha.png", emoji: "⚔️", size: "37 MB" },
-  { title: "Fracture Point", status: "released", platform: "Windows", description: "Enter the world of Fracture Point in this free downloadable build.", url: "Fracture Point EXE.zip", image: "Fracture Point EXE.png", emoji: "💥", size: "46 MB" },
-  { title: "Iron Tide", status: "released", platform: "Windows", description: "Experience Iron Tide, a free ICE MONKEY game for Windows.", url: "Iron Tide EXE.zip", image: "Iron Tide EXE.png", emoji: "🌊", size: "66 MB" },
-  { title: "RIFTWILD", status: "released", platform: "Windows", description: "Discover RIFTWILD in this free Windows game build.", url: "RIFTWILD.zip", image: "RIFTWILD.png", emoji: "🌌", size: "36 MB" },
-  { title: "STILLWATER BELOW", status: "released", platform: "Windows", description: "Venture into STILLWATER BELOW in this free downloadable Windows release.", url: "STILLWATER BELOW.zip", image: "STILLWATER BELOW.png", emoji: "🌑", size: "33 MB" },
+  { title: "Among Us 3D — The Skeld", status: "released", platform: "Windows", description: "A fan-made 3D take on social deduction aboard The Skeld. Unofficial fan project; not affiliated with Innersloth.", url: "https://drive.google.com/file/d/1f7KjFoHv-5luO5zn1dn3EzcaenUYIBpI/view?usp=drive_link", image: "Among Us 3D - The Skeld EXE.png", emoji: "🚀", size: "42 MB" },
+  { title: "FableArena (Alpha)", status: "released", platform: "Windows", description: "Try the early alpha build of FableArena and explore what we're building. Feedback is welcome!", url: "https://drive.google.com/file/d/1sY4witdjQamFcoUepR2n5RUoryIckKsR/view?usp=drive_link", image: "FableArena-alpha.png", emoji: "⚔️", size: "37 MB" },
+  { title: "Fracture Point", status: "released", platform: "Windows", description: "Enter the world of Fracture Point in this free downloadable build.", url: "https://drive.google.com/file/d/1w9tkoBMCqIQ4J8zXNHnD70adMGc7CIpR/view?usp=drive_link", image: "Fracture Point EXE.png", emoji: "💥", size: "46 MB" },
+  { title: "Iron Tide", status: "released", platform: "Windows", description: "Experience Iron Tide, a free ICE MONKEY game for Windows.", url: "https://drive.google.com/file/d/1dvQ2gr0q4eVK48RrjLnx1qJfFw28gCev/view?usp=drive_link", image: "Iron Tide EXE.png", emoji: "🌊", size: "66 MB" },
+  { title: "RIFTWILD", status: "released", platform: "Windows", description: "Discover RIFTWILD in this free Windows game build.", url: "https://drive.google.com/file/d/18ceqh59DckRfI6VMMsi9doihqIXd6reD/view?usp=drive_link", image: "RIFTWILD.png", emoji: "🌌", size: "36 MB" },
+  { title: "STILLWATER BELOW", status: "released", platform: "Windows", description: "Venture into STILLWATER BELOW in this free downloadable Windows release.", url: "https://drive.google.com/file/d/1UT_S4EKdUO73apNQ4-uT_K7Qd-nBj3Va/view?usp=drive_link", image: "STILLWATER BELOW.png", emoji: "🌑", size: "33 MB" },
   { title: "BLASTBOUND", status: "released", platform: "Browser", description: "Jump into a fast-paced arena destruction party game, playable right in your browser — no install needed.", url: "blastbound.html", image: "blastbound.png", emoji: "💣", size: "Instant play" }
 ];
 // Add a line like this to the array above for each game:
@@ -44,7 +44,7 @@ function renderGame(game) {
  const name=document.createElement('h3');name.textContent=game.title;
  const desc=document.createElement('p');desc.textContent=game.description;
  content.append(tag,name,desc);const platform=document.createElement('div');platform.className='platform';platform.textContent=game.platform==='Browser'?'🌐 Browser game · No download required':'🖥 Windows PC · Free ZIP download';content.append(platform);
- if(game.url){const link=document.createElement('a');link.className='game-link';link.href='./'+encodeURIComponent(game.url);if(game.platform==='Windows'){link.setAttribute('download','');}else{link.target='_blank';link.rel='noopener noreferrer';}link.textContent=game.status==='development'?'Learn More ↗':game.platform==='Browser'?'▶ Play in browser ↗':'↓ Download for Windows'+(game.size?' ('+game.size+')':'');content.append(link)}else{const note=document.createElement('span');note.style.color='#8caaba';note.style.fontSize='13px';note.textContent=game.status==='development'?'Updates coming soon':'Game link coming soon';content.append(note)}
+ if(game.url){const link=document.createElement('a');link.className='game-link';link.href=/^https?:\/\//i.test(game.url)?game.url:'./'+encodeURIComponent(game.url);link.target='_blank';link.rel='noopener noreferrer';link.textContent=game.status==='development'?'Learn More ↗':game.platform==='Browser'?'▶ Play in browser ↗':'↓ Get free Windows game ↗'+(game.size?' ('+game.size+')':'');content.append(link)}else{const note=document.createElement('span');note.style.color='#8caaba';note.style.fontSize='13px';note.textContent=game.status==='development'?'Updates coming soon':'Game link coming soon';content.append(note)}
  card.append(art,content);return card;
 }
 for(const game of games){document.getElementById(game.status==='development'?'upcoming-games':'released-games').append(renderGame(game))}
